@@ -1,9 +1,10 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -Wall -fPIC -Iinclude -I/usr/local/include/azureiot -I/home/vivekjha/Project
-LDFLAGS = -L/usr/local/lib -L/home/vivekjha/Project
+#CXXFLAGS = -Wall -fPIC -Iinclude -I/home/einfochips/vivekanand/Project/Project/azure-iot-sdk-c/iothub_client/inc -I/home/einfochips/vivekanand/Project/Project/include -I/home/einfochips/vivekanand/Project/Project/azure-iot-sdk-c/deps/umock-c/inc
+CXXFLAGS = -Wall -fPIC $(shell find /home/einfochips/vivekanand/Project -type d -name "inc" -exec echo -I{} \;) -I/home/einfochips/vivekanand/Project/Project/include
+LDFLAGS = -L/usr/local/lib -L/home/einfochips/vivekanand/Project
 LIBS = -liothub_client -liothub_client_mqtt_transport -lumqtt -laziotsharedutil \
-       -lssl -lcrypto -lpthread -lparson -lcurl -lazureDemo
+       -lssl -lcrypto -lpthread -lparson -lcurl #-lazureDemo
 
 # Directories
 SRC_DIR = src

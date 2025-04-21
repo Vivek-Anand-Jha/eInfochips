@@ -17,10 +17,17 @@
 #include <condition_variable>
 
 /* userDefined Headers */
-#include <azureiot/iothub.h>
-#include <azureiot/iothub_device_client_ll.h>
-#include <azureiot/iothubtransportmqtt.h>
-#include <azureiot/iothub_message.h>
+#include <iothub.h>
+#include <iothub_device_client_ll.h>
+#include <iothubtransportmqtt.h>
+#include <iothub_message.h>
+
+/* Header for Socket */
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <netdb.h>
 
 /* Function Prototypes */
 extern std::atomic<bool> running;
@@ -32,5 +39,6 @@ void processQueue(IOTHUB_DEVICE_CLIENT_LL_HANDLE device_handle);
 void listenForMessages(IOTHUB_DEVICE_CLIENT_LL_HANDLE device_handle);
 void sendHelloWorld(IOTHUB_DEVICE_CLIENT_LL_HANDLE device_handle);
 IOTHUBMESSAGE_DISPOSITION_RESULT messageReceivedCallback(IOTHUB_MESSAGE_HANDLE message, void* userContext);
+void tcpSender(int port);
 
 #endif
